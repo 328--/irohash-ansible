@@ -1,0 +1,23 @@
+- name: updates a server
+  apt: update_cache=yes
+
+- name: update a server
+  apt: upgrade=full
+
+- name: package install
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items: application_list
+
+- name: Be sure shell is zsh
+  command: grep vagrant /etc/passwd
+  register: resultsh
+
+- name: Change shell to zsh
+  command: chsh -s /usr/bin/zsh vagrant
+  when: resultsh.stdout.find('/bin/zsh') == -1
+    
+- name: github-connect.sh install
+  copy: src=github-connect.sh dest=/usr/local/bin/github-connect.sh owner=root group=root mode=0755
+
+- name: install script
+  copy: src=install.sh dest=/home/vagrant/install.sh owner=vagrant group=vagrant mode=0755

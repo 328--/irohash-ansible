@@ -1,0 +1,14 @@
+application_list:
+  - ntp
+  - git
+  - build-essential
+  - libssl-dev
+  - nodejs
+  - zsh
+  - ntp
+  - vim
+  - emacs
+  - git-core
+  - postgresql-common
+  - postgresql-9.3
+  - libpq-dev
